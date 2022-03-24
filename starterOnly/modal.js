@@ -11,7 +11,6 @@ function editNav() {
 const modalbg = document.querySelector(".bground")
 const modalBtn = document.querySelectorAll(".modal-btn")
 const modalBtnClose = document.querySelectorAll(".modal-btn-close")
-const modalBtnSubmit = document.querySelectorAll(".btn-submit")
 const formData = document.querySelectorAll(".formData")
 const inputFirstname = document.querySelector("#first")
 const inputLastname = document.querySelector("#last")
@@ -19,6 +18,7 @@ const inputEmail = document.querySelector("#email")
 const inputBirthdate = document.querySelector("#birthdate")
 const inputQuantity = document.querySelector("#quantity")
 const inputLocation = document.querySelectorAll(".checkbox-input")
+const modalBody = document.querySelectorAll(".modal-body")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
@@ -31,16 +31,28 @@ var lastnameIsValid = false  // 2 characters min
 var emailIsValid = false     // mail need to be valid
 var quantityIsValid = false // an input is needed
 var locationIsValid = false // an input is needed
+var formValid = false // if all true
 
 function isFormValid() {
-  console.log(modalBtnSubmit) // remove me
-  firstnameIsValid &&
+  if (firstnameIsValid &&
   lastnameIsValid &&
   emailIsValid &&
   quantityIsValid &&
-  locationIsValid ?
-  modalBtnSubmit.disabled = false :
-  modalBtnSubmit.disabled = true
+  locationIsValid) {
+    formValid = true
+  } else {
+    formValid = false
+  }
+}
+
+function formSuccess() {
+  // modalBody
+  if (formValid) {
+    console.log('valide form')
+  } else {
+    console.log('unvalide form')
+  }
+  return false
 }
 
 function onFirstnameChange() {
