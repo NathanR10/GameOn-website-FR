@@ -11,6 +11,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground")
 const modalBtn = document.querySelectorAll(".modal-btn")
 const modalBtnClose = document.querySelectorAll(".modal-btn-close")
+const modalBtnSubmit = document.querySelectorAll(".btn-submit")
 const formData = document.querySelectorAll(".formData")
 const inputFirstname = document.querySelector("#first")
 const inputLastname = document.querySelector("#last")
@@ -31,22 +32,38 @@ var emailIsValid = false     // mail need to be valid
 var quantityIsValid = false // an input is needed
 var locationIsValid = false // an input is needed
 
+function isFormValid() {
+  console.log(modalBtnSubmit) // remove me
+  firstnameIsValid &&
+  lastnameIsValid &&
+  emailIsValid &&
+  quantityIsValid &&
+  locationIsValid ?
+  modalBtnSubmit.disabled = false :
+  modalBtnSubmit.disabled = true
+}
+
 function onFirstnameChange() {
   inputFirstname.value.length > 1 ? firstnameIsValid = true : firstnameIsValid = false
+  isFormValid()
 }
 function onLastnameChange() {
   inputLastname.value.length > 1 ? lastnameIsValid = true : lastnameIsValid = false
+  isFormValid()
 }
 function onEmailChange() {
   const mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,24})+$/
   inputEmail.value.match(mailRegex) ? emailIsValid = true : emailIsValid = false
+  isFormValid()
 }
 function onQuantityChange() {
   inputQuantity.value.length > 0 ? quantityIsValid = true : quantityIsValid = false
   inputQuantity.value < 0 && (inputQuantity.value = 0)
+  isFormValid()
 }
 function onLocationChange() {
   document.querySelector('input[name="location"]:checked').value ? locationIsValid = true : locationIsValid = false
+  isFormValid()
 }
 
 // launch-close modal form
