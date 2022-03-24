@@ -18,7 +18,7 @@ const inputEmail = document.querySelector("#email")
 const inputBirthdate = document.querySelector("#birthdate")
 const inputQuantity = document.querySelector("#quantity")
 const inputLocation = document.querySelectorAll(".checkbox-input")
-const modalBody = document.querySelectorAll(".modal-body")
+const modalForm = document.querySelector("#modalForm")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
@@ -48,9 +48,12 @@ function isFormValid() {
 function formSuccess() {
   // modalBody
   if (formValid) {
-    console.log('valide form')
+    modalForm.remove()
+    var element = document.createElement("p");
+    element.appendChild(document.createTextNode('Merci pour votre inscription'));
+    document.getElementById('modalBody').appendChild(element);
   } else {
-    console.log('unvalide form')
+    console.log('Form invalide !')
   }
   return false
 }
