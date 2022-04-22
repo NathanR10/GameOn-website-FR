@@ -14,19 +14,18 @@
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
+      <img alt="logo" src="Logo.png" />
     </div>
     <div class="main-navbar">
       
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
+      <!--<a href="#" class="active"><span>Accueil</span></a>-->
+      <a href="#" id="first-item" class="active"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="javascript:void(0);" id="burger" class="icon" onclick="editNav()">
         <i class="fa fa-bars"></i>
       </a>
-    </div>
     </div>
   </div>
     <main>
@@ -58,25 +57,28 @@
           <div id="modalBody" class="modal-body">
             <form
               name="reserve"
-              action=""
+              action="#"
               method="get"
               id="modalForm"
               onsubmit="return formSuccess();"
             >
               <div
-                class="formData">
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez saisir un prénom valide">
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  minlength="2"
                   onkeyup="onFirstnameChange()"
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez saisir un nom valide">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -87,7 +89,9 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez saisir une adresse mail valide">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
@@ -98,7 +102,9 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez saisir une date valide">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -109,7 +115,9 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez saisir un montant valide">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input
                   type="number"
@@ -119,11 +127,15 @@
                   min="0"
                   max="99"
                   onkeyup="onQuantityChange()"
+                  onclick="onQuantityChange()"
                 >
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                id="locationList"
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez selectionner une option">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -193,14 +205,17 @@
               </div>
 
               <div
-                class="formData">
+                class="formData"
+                data-error-visible="false"
+                data-error="Veuillez lire et accepter les conditions d'utilisation">
                 <input
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
+                  onclick="onCGUChange()"
                   checked
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -218,6 +233,17 @@
                 value="C'est parti"
               />
             </form>
+            <div id="modalResult">
+              <span></span>
+              <p>
+                Merci pour
+                <br>
+                votre inscription
+              </p>
+              <button class="btn-signup modal-btn">
+                Fermer
+              </button>
+            </div>
           </div>
         </div>
       </div>
